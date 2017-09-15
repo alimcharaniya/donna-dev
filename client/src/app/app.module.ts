@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AlertModule } from 'ngx-bootstrap';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
 
 import { ChatService } from './services/chat.service';
 
@@ -31,6 +33,7 @@ import { UserSettingsComponent } from './components/users/settings/user-settings
   imports: [
     AlertModule.forRoot(),
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot([
       {path: '', component: WelcomeComponent},
       {path: 'donna', component: ChatComponent},
