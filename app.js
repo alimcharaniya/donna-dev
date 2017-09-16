@@ -10,6 +10,7 @@ var app = express();
 var donna = require('./donna.js');
 var bookings = require('./routes/bookings');
 var env = process.env.NODE_ENV || 'development';
+
 app.locals.ENV = env;
 app.locals.ENV_DEVELOPMENT = env == 'development';
 
@@ -72,5 +73,16 @@ app.set('port', process.env.PORT || 3000);
 var server = app.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + server.address().port);
 });
+var admin = require("firebase-admin");
 
+var serviceAccount = require("./serviceAccountKey.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://donna-60361.firebaseio.com"
+});
+admin.database().ref('users/' + 1).set({
+        username: "gurvir",
+     email: "gurvir.gill@sjsu.edu"
+   });
 module.exports = app;

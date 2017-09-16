@@ -1,0 +1,23 @@
+<h1> TESTING SERVER </h1>
+
+<script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase-messaging.js"></script>
+<script>
+  var firebase = require("firebase/app");
+  require("firebase/auth");
+  require("firebase/database");
+
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBIZGG_U1xvqwO9h892zVhzbFZhqgZe1as",
+    authDomain: "donna-60361.firebaseapp.com",
+    databaseURL: "https://donna-60361.firebaseio.com",
+    projectId: "donna-60361",
+    storageBucket: "donna-60361.appspot.com",
+    messagingSenderId: "1070134236763"
+  };
+  firebase.initializeApp(config);
+</script>

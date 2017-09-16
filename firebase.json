@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "donna-dev",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
