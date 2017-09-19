@@ -11,8 +11,10 @@
   </div>
 </div>
 
+<div class="col-lg-10 col-lg-offset-1">
+
 <h1>Create a booking</h1>
-<form class="form-horizontal" #addBookingForm="ngForm" (ngSubmit)="addBooking(addBookingForm.value)">
+<form class="form-horizontal" #addBookingForm="ngForm" (ngSubmit)="addBooking(addBookingForm)">
 <fieldset>
 
 <!-- Form Name -->
@@ -30,7 +32,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="email">Email Address</label>
   <div class="col-md-4">
-  <input id="email" name="email" type="text" placeholder="" class="form-control input-md" required ngModel>
+  <input id="email" name="email" type="text" placeholder="" class="form-control input-md" ngModel required>
   </div>
 </div>
 
@@ -47,10 +49,10 @@
   <label class="col-md-4 control-label" for="tourselection">Service Type</label>
   <div class="col-md-4">
     <select id="serviceSelection" name="serviceselection" class="form-control" ngModel required>
-      <option value="1">Haircut</option>
-      <option value="2">The Gentlemens Cut</option>
-      <option value="3">Beard Trim</option>
-      <option value="4">Kids Haircut</option>
+      <option value="Haircut">Haircut</option>
+      <option value="The Gentlemens Cut">The Gentlemens Cut</option>
+      <option value="Beard Trim">Beard Trim</option>
+      <option value="Kids Haircut">Kids Haircut</option>
     </select>
   </div>
 </div>
@@ -75,19 +77,27 @@
   <input id="dateselection" name="dateselection" type="date" placeholder="" class="form-control input-md" ngModel required>
   </div>
 </div>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="dateselection">Date</label>
+  <div class="col-md-4">
+  <input id="notes" name="notes" type="date" placeholder="" class="form-control input-md" ngModel required>
+  </div>
+</div>
 
 <!-- Select Basic -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="timeselect">Time</label>
   <div class="col-md-4">
     <select id="timeselect" name="timeselect" class="form-control" ngModel required>
-      <option value="1">9:45a</option>
-      <option value="2">12p</option>
-      <option value="3">2p</option>
-      <option value="4">4p</option>
+      <option value="09:45">9:45a</option>
+      <option value="12:00">12p</option>
+      <option value="02:00">2p</option>
+      <option value="04:00">4p</option>
     </select>
     <button class="btn btn-primary" type="submit">Add new booking</button>
   </div>
 </div>
 </fieldset>
 </form>
+</div>

@@ -10,6 +10,8 @@ var app = express();
 var donna = require('./donna.js');
 var bookings = require('./routes/bookings');
 var env = process.env.NODE_ENV || 'development';
+var cors = require('cors');
+
 
 app.locals.ENV = env;
 app.locals.ENV_DEVELOPMENT = env == 'development';
@@ -20,6 +22,7 @@ app.set('view engine', 'jade');
 
 // app.use(favicon(__dirname + '/public/img/favicon.ico'));
 app.use(logger('dev'));
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
@@ -32,13 +35,16 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/bookings', bookings);
 
-/// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+//Body Parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:false}));
 
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+/// catch 404 and forward to error handler
+app.use(function(req, res) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
 });
 
 /// error handlers
@@ -57,32 +63,11 @@ if (app.get('env') === 'development') {
     });
 }
 
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {},
-        title: 'error'
-    });
-});
-
-app.set('port', process.env.PORT || 3000);
+app.set('port', 3000);
 
 var server = app.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + server.address().port);
 });
-var admin = require("firebase-admin");
 
-var serviceAccount = require("./serviceAccountKey.json");
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://donna-60361.firebaseio.com"
-});
-admin.database().ref('users/' + 1).set({
-        username: "gurvir",
-     email: "gurvir.gill@sjsu.edu"
-   });
 module.exports = app;
