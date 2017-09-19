@@ -10,9 +10,13 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 export class ViewBookingsComponent {
   items: FirebaseListObservable<any[]>;
 
+
   constructor(private db: AngularFireDatabase){
     this.items = db.list('/bookings');
   }
 
+  editUser(user){
+    console.log("EDITING: " + user.name);
+  }
   title = 'app';
 }

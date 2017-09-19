@@ -18,25 +18,22 @@
     <thead>
       <tr>
         <th>Full Name</th>
-        <th>Phone Number</th>
-        <th>Email</th>
-        <th>Service<th>
-        <th>Att</th>
+        <th>Service</th>
+        <th>Atendant</th>
         <th>Date</th>
         <th>Time</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of items | async">
-        <td> {{item.name}} </td>
-        <td> {{item.phone}} </td>
-        <td>  {{item.email}} </td>
-        <td>  {{item.service}} </td>
-        <td> {{item.attendant}} </td>
-        <td> {{item.date}} </td>
-        <td> {{item.time}} </td>
+        <td>{{item.name}} </td>
+        <td>{{item.service}} </td>
+        <td>{{item.attendant}} </td>
+        <td>{{item.date}} </td>
+        <td>{{item.time}} </td>
+        <td><button class="btn btn-primary" (click)="editUser(this.item)">Edit</button> </td>
       </tr>
     </tbody>
   </table>
-
 </div>

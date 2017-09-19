@@ -32,5 +32,6 @@ export class AddBookingComponent {
     }
     console.log("New booking added");
     this.af.list('bookings').push(newBooking);
+    addBookingForm.resetForm();
   }
 }

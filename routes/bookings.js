@@ -15,7 +15,8 @@ admin.initializeApp({
 
 /* GET all bookings. */
 router.get('/', function(req, res, next) {
-  console.log("api called");
+  console.log("GET CALLED FROM BOT");
+  console.log(req.params.query);
   res.send(200);
 });
 

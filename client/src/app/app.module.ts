@@ -16,6 +16,8 @@ import { BookingService } from './services/booking.service';
 
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { LoginComponent } from './components/login/login.component';
+
 
 import { ChatComponent } from './components/bot/chat.component';
 import { ShopSettingsComponent } from './components/shop/settings/settings.component';
@@ -29,6 +31,7 @@ import { UserSettingsComponent } from './components/settings/user-settings.compo
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
     ChatComponent,
     WelcomeComponent,
     ViewBookingsComponent,
@@ -45,6 +48,7 @@ import { UserSettingsComponent } from './components/settings/user-settings.compo
     FormsModule,
     RouterModule.forRoot([
       {path: '', component: WelcomeComponent},
+      {path: 'login', component: LoginComponent},
       {path: 'donna', component: ChatComponent},
       {path: 'view-bookings', component: ViewBookingsComponent},
       {path: 'calendar', component: CalendarComponent},
