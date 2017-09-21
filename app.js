@@ -11,6 +11,11 @@ var donna = require('./donna.js');
 var bookings = require('./routes/bookings');
 var env = process.env.NODE_ENV || 'development';
 var cors = require('cors');
+var gcal = require('google-calendar');
+
+const googleUserId = 'GOOGLE_EMAIL_ADDRESS';
+const refreshToken = 'GOOGLE_REFRESH_TOKEN';
+const baseUrl = 'DEV_API_URL';
 
 
 app.locals.ENV = env;
