@@ -97,15 +97,15 @@ function storeToken(token) {
 
 function addEvent(auth){
   var event = {
-  'summary': 'TESTING DONNA',
+  'summary': 'TESTING DONNA WITGH MURALI',
   'location': '800 Howard St., San Francisco, CA 94103',
   'description': 'Inserted using Donna by Alim.',
   'start': {
-    'dateTime': '2017-09-28T09:00:00-07:00',
+    'dateTime': '2017-10-05T09:00:00-07:00',
     'timeZone': 'America/Los_Angeles',
   },
   'end': {
-    'dateTime': '2017-09-28T17:00:00-07:00',
+    'dateTime': '2017-10-05T17:00:00-07:00',
     'timeZone': 'America/Los_Angeles',
   },
   'recurrence': [
@@ -123,6 +123,7 @@ function addEvent(auth){
     ],
   },
 };
+
 var calendar = google.calendar('v3');
 console.log("About to insert to google calendar");
 calendar.events.insert({
@@ -170,4 +171,5 @@ function listEvents(auth) {
       }
     }
   });
+  addEvent(auth);
 }

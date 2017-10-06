@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/user');
 var app = express();
-var donna = require('./donna.js');
+var index = require('./donna.js');
 var bookings = require('./routes/bookings');
 var env = process.env.NODE_ENV || 'development';
 var cors = require('cors');
@@ -36,7 +36,7 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+app.use('/', index);
 app.use('/users', users);
 app.use('/bookings', bookings);
 
