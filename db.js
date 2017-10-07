@@ -4,6 +4,7 @@ var fs = require('fs');
 var readline = require('readline');
 var google = require('googleapis');
 var googleAuth = require('google-auth-library');
+var moment = require('moment');
 
 // If modifying these scopes, delete your previously saved credentials
 // at ~/.credentials/calendar-nodejs-quickstart.json
@@ -11,6 +12,8 @@ var SCOPES = ['https://www.googleapis.com/auth/calendar'];
 var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
     process.env.USERPROFILE) + '/.credentials/';
 var TOKEN_PATH = TOKEN_DIR + 'serviceAccountKey.json';
+
+var token;
 
 // Load client secrets from a local file.
 fs.readFile('client_secret.json', function processClientSecrets(err, content) {
@@ -20,7 +23,8 @@ fs.readFile('client_secret.json', function processClientSecrets(err, content) {
   }
   // Authorize a client with the loaded credentials, then call the
   // Google Calendar API.
-  authorize(JSON.parse(content), addEvent);
+  token = JSON.parse(content);
+  authorize(JSON.parse(content), listEvents);
 });
 
 /**
@@ -50,19 +54,19 @@ function authorize(credentials, callback) {
 
 function addEvent(auth){
   var event = {
-  'summary': 'Inserted by Donna',
+  'summary': 'Askey and Alim',
   'location': '',
-  'description': '',
+  'description': 'Inserted by Donna',
   'start': {
-    'dateTime': '2017-09-28T09:00:00-07:00',
+    'dateTime': '2017-10-07T09:00:00-07:00',
     'timeZone': 'America/Los_Angeles',
   },
   'end': {
-    'dateTime': '2017-09-28T17:00:00-07:00',
+    'dateTime': '2017-10-07T17:00:00-07:00',
     'timeZone': 'America/Los_Angeles',
   },
   'recurrence': [
-    'RRULE:FREQ=DAILY;COUNT=1'
+
   ],
   'attendees': [
     {'email': 'lpage@example.com'},
@@ -76,20 +80,56 @@ function addEvent(auth){
     ],
   },
 };
+
+
 var calendar = google.calendar('v3');
-// console.log("About to insert to google calendar");
-// calendar.events.insert({
-//   auth: auth,
-//   calendarId: 'primary',
-//   resource: event,
-// }, function(err, event) {
-//   if (err) {
-//     console.log('There was an error contacting the Calendar service: ' + err);
-//     return;
-//   }
-//   console.log('Event created: %s', event.htmlLink);
-// });
+console.log("About to insert to google calendar");
+calendar.events.insert({
+  auth: auth,
+  calendarId: 'primary',
+  resource: event,
+}, function(err, event) {
+  if (err) {
+    console.log('There was an error contacting the Calendar service: ' + err);
+    return;
+  }
+  console.log('Event created: %s', event.htmlLink);
+});
 }
+
+/**
+ * Lists the next 10 events on the user's primary calendar.
+ *
+ * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
+ */
+function listEvents(auth) {
+  var calendar = google.calendar('v3');
+  calendar.events.list({
+    auth: auth,
+    calendarId: 'primary',
+    timeMin: (new Date()).toISOString(),
+    maxResults: 10,
+    singleEvents: true,
+    orderBy: 'startTime'
+  }, function(err, response) {
+    if (err) {
+      console.log('The API returned an error: ' + err);
+      return;
+    }
+    var events = response.items;
+    if (events.length == 0) {
+      console.log('No upcoming events found.');
+    } else {
+      console.log('Upcoming 10 events:');
+      for (var i = 0; i < events.length; i++) {
+        var event = events[i];
+        var start = event.start.dateTime || event.start.date;
+        console.log('%s - %s', start, event.summary);
+      }
+    }
+  });
+}
+
 
 //Initalize firebase database
 admin.initializeApp({
@@ -100,10 +140,31 @@ admin.initializeApp({
 console.log("Db.js compiled");
 
 var i = 0;
-admin.database().ref('/bookings').limitToLast(1).on('value', function(snapshot){
-  console.log("VALUE CHANGED IN DATABASE");
-  var lastAdded = snapshot.val();
-  console.log(lastAdded);
-  console.log(i);
+
+admin.database().ref('/bookings').limitToLast(1).on('child_added', function(snapshot){
+  console.log("BOOKING ADDED!");
+
+  var newEvent = {
+    "name":snapshot.val().name,
+    "phone":snapshot.val().phone,
+    "email": snapshot.val().email,
+    "service" : snapshot.val().service,
+    "attendant" : snapshot.val().attendant
+  };
+
+  var name = snapshot.val().name;
+  var phone = snapshot.val().phone;
+  var email = snapshot.val().email;
+  var attendant = snapshot.val().attendant;
+  var service = snapshot.val().service;
+  var date = snapshot.val().date;
+  var time = snapshot.val().time;
+  var notes = snapshot.val().note;
+
+  var eventTitle = name + " for service: " + service;
+  console.log(eventTitle);
+
+  authorize(token, addEvent);
+
   i++;
-})
+});

@@ -8,11 +8,13 @@ import { HttpModule } from '@angular/http';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { environment } from '../environments/environment';
 
 import { ChatService } from './services/chat.service';
 import { BookingService } from './services/booking.service';
+import { AuthService } from './services/auth.service';
 
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
@@ -26,7 +28,13 @@ import { ViewBookingsComponent } from './components/view-bookings/view-bookings.
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { UserSettingsComponent } from './components/settings/user-settings.component';
 
-
+export const firebaseConfig = {
+    apiKey: "AIzaSyBIZGG_U1xvqwO9h892zVhzbFZhqgZe1as",
+    authDomain: "donna-60361.firebaseapp.com",
+    databaseURL: "https://donna-60361.firebaseio.com",
+    storageBucket: "donna-60361.appspot.com",
+    messagingSenderId: "1070134236763"
+};
 
 @NgModule({
   declarations: [
@@ -45,6 +53,7 @@ import { UserSettingsComponent } from './components/settings/user-settings.compo
     HttpModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
     FormsModule,
     RouterModule.forRoot([
       {path: '', component: WelcomeComponent},
@@ -56,7 +65,7 @@ import { UserSettingsComponent } from './components/settings/user-settings.compo
       {path: 'set-hours', component: UserSettingsComponent},
     ])
   ],
-  providers: [ChatService, BookingService],
+  providers: [ChatService, BookingService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

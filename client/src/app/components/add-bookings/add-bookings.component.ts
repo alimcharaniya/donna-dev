@@ -19,6 +19,7 @@ export class AddBookingComponent {
 
   }
 
+
   addBooking(addBookingForm: NgForm){
     var newBooking = {
       name : addBookingForm.value.name,
