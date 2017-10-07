@@ -19,6 +19,8 @@
           <h1>Donna @ The Gentlemen's Barber Shop</h1>
           <h2>She can be embedded to an existing webpage, or on a dedicated page on our domain.</h2>
         </div>
+        <input type="text" #msg/>
+        <button (click)="sendTestMsg(msg.value)" class="btn btn-primary">Send Message</button>
     </div>
 </div>
 
