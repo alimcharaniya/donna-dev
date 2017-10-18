@@ -7,6 +7,7 @@ import { ChatService } from '../../services/chat.service';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
+
 export class ChatComponent {
 
   messages = [];
@@ -25,18 +26,19 @@ export class ChatComponent {
       this.donnaReplies(message);
     })
   }
+
   sendTestMsg(msg){
     this.chatService.sendMessage(msg);
-    
+
   }
 
-  sendMessage(box){
-    var userReply = box.value;
+  sendMessage(msg){
+    var userReply = msg;
     var userReplyString = '<li class="right clearfix"><span class="chat-img pull-right"><img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small><strong class="pull-right primary-font">Alim Charaniya</strong></div><p>' + userReply + '</p></div></li>';
     console.log("Sending message: " + userReply);
     this.conversationString = this.conversationString + userReplyString;
     this.chatService.sendMessage(userReply);
-    box.value = '';
+    msg = '';
   }
 
   donnaReplies(msg){
