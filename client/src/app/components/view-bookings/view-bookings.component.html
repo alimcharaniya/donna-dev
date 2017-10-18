@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+      <li class=""><a href="/" routerLink="/">Welcome <span class="sr-only">(current)</span></a></li>
+      <li class=""><a href="/donna" routerLink="/donna">Donna Home </a></li>
+      <li class=""><a href="/view-bookings" routerLink="/view-bookings">All Bookings </a></li>
+      <li class=""><a href="/calendar" routerLink="/calendar">Calendar  </a></li>
+      <li class=""><a href="/add-booking" routerLink="/add-booking">Add new booking  </a></li>
+      <li class=""><a href="/set-hours" routerLink="/set-hours">Barber Set Hours  </a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="col-lg-10 col-lg-offset-1">
+  <h1>View bookings</h1>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Full Name</th>
+        <th>Service</th>
+        <th>Atendant</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items | async">
+        <td>{{item.name}} </td>
+        <td>{{item.service}} </td>
+        <td>{{item.attendant}} </td>
+        <td>{{item.date}} </td>
+        <td>{{item.time}} </td>
+        <td><button class="btn btn-primary" (click)="editUser(this.item)">Edit</button> </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

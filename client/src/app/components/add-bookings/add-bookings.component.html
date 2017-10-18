@@ -1,0 +1,103 @@
+<div class="container">
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+      <li class=""><a href="/" routerLink="/">Welcome <span class="sr-only">(current)</span></a></li>
+      <li class=""><a href="/donna" routerLink="/donna">Donna Home </a></li>
+      <li class=""><a href="/view-bookings" routerLink="/view-bookings">All Bookings </a></li>
+      <li class=""><a href="/calendar" routerLink="/calendar">Calendar  </a></li>
+      <li class=""><a href="/add-booking" routerLink="/add-booking">Add new booking  </a></li>
+      <li class=""><a href="/set-hours" routerLink="/set-hours">Barber Set Hours  </a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="col-lg-10 col-lg-offset-1">
+
+<h1>Create a booking</h1>
+<form class="form-horizontal" #addBookingForm="ngForm" (ngSubmit)="addBooking(addBookingForm)">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Book an appointment</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="name">Full Name</label>
+  <div class="col-md-4">
+  <input id="name" name="name" type="text" placeholder="" class="form-control input-md" ngModel required>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="email">Email Address</label>
+  <div class="col-md-4">
+  <input id="email" name="email" type="text" placeholder="" class="form-control input-md" ngModel required>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="phone">Phone Number</label>
+  <div class="col-md-4">
+  <input id="phone" name="phonenumber" type="text" placeholder="" class="form-control input-md" required="" ngModel>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="tourselection">Service Type</label>
+  <div class="col-md-4">
+    <select id="serviceSelection" name="serviceselection" class="form-control" ngModel required>
+      <option value="Haircut">Haircut</option>
+      <option value="The Gentlemens Cut">The Gentlemens Cut</option>
+      <option value="Beard Trim">Beard Trim</option>
+      <option value="Kids Haircut">Kids Haircut</option>
+    </select>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="tourselection">Attendant</label>
+  <div class="col-md-4">
+    <select id="attendantselection" name="attendantselection" class="form-control" ngModel required>
+      <option value="Alim">Alim</option>
+      <option value="Amin">Amin</option>
+      <option value="Aryan">Aryan</option>
+      <option value="Reshma">Reshma</option>
+    </select>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="dateselection">Date</label>
+  <div class="col-md-4">
+  <input id="dateselection" name="dateselection" type="date" placeholder="" class="form-control input-md" ngModel required>
+  </div>
+</div>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="notes">Notes</label>
+  <div class="col-md-4">
+  <input id="notes" name="notes" type="text" placeholder="" class="form-control input-md" ngModel required>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="timeselect">Time</label>
+  <div class="col-md-4">
+    <select id="timeselect" name="timeselect" class="form-control" ngModel required>
+      <option value="09:45">9:45a</option>
+      <option value="12:00">12p</option>
+      <option value="02:00">2p</option>
+      <option value="04:00">4p</option>
+    </select>
+    <button class="btn btn-primary" type="submit">Add new booking</button>
+  </div>
+</div>
+</fieldset>
+</form>
+</div>

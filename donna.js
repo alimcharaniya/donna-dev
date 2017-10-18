@@ -40,7 +40,7 @@ io.on('connect',function(socket){
         var s = data.entities.service_type[0].value;
 
         newAppointment.service = s; //Set new appointment service
-
+        console.log("Okay. you want a " + s);
         console.log(data.entities.service_type[0].value);
         var res = ("Ok. When do you want a " + s + "?");
         socket.emit("donnaReply", res);
