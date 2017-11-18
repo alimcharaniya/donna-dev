@@ -27,6 +27,7 @@ import { AddBookingComponent } from './components/add-bookings/add-bookings.comp
 import { ViewBookingsComponent } from './components/view-bookings/view-bookings.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { UserSettingsComponent } from './components/settings/user-settings.component';
+import { SetupBusinessComponent } from './components/setup-business/setup-business.component';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyBIZGG_U1xvqwO9h892zVhzbFZhqgZe1as",
@@ -45,7 +46,8 @@ export const firebaseConfig = {
     ViewBookingsComponent,
     CalendarComponent,
     AddBookingComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    SetupBusinessComponent
   ],
   imports: [
     AlertModule.forRoot(),
@@ -63,6 +65,8 @@ export const firebaseConfig = {
       {path: 'calendar', component: CalendarComponent},
       {path: 'add-booking', component: AddBookingComponent},
       {path: 'set-hours', component: UserSettingsComponent},
+      {path: 'setup-business', component: SetupBusinessComponent}
+
     ])
   ],
   providers: [ChatService, BookingService, AuthService],
