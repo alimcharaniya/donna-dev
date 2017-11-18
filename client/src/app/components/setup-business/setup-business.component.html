@@ -1,0 +1,130 @@
+<div class="container">
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+      <li class=""><a href="/" routerLink="/">Welcome<span class="sr-only">(current)</span></a></li>
+      <li class=""><a href="/donna" routerLink="/donna">Donna Home</a></li>
+      <li class=""><a href="/view-bookings" routerLink="/view-bookings">All Bookings</a></li>
+      <li class=""><a href="/calendar" routerLink="/calendar">Calendar</a></li>
+      <li class=""><a href="/add-booking" routerLink="/add-booking">Add new booking</a></li>
+      <li class=""><a href="/set-hours" routerLink="/set-hours">Barber Set Hours</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="col-lg-8 col-lg-offset-2">
+
+  <h1>Welcome!</h1>
+  <form class="form-horizontal" #setupBusinessForm="ngForm" (ngSubmit)="setupBusiness(setupBusinessForm)">
+    <fieldset>
+
+      <!-- Form Name -->
+      <legend>Let's set up your business!</legend>
+
+      <!-- Start Panel -->
+      <div class="panel panel-primary">
+        <div class="panel-heading">Basic Business Information</div>
+        <div class="panel-body">
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="name">Full Name</label>
+            <div class="col-md-4">
+              <input id="name" name="name" type="text" placeholder="John Doe" class="form-control input-md" ngModel required>
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="email">Email Address</label>
+            <div class="col-md-4">
+              <input id="email" name="email" type="text" placeholder="johndoe@gmail.com" class="form-control input-md" ngModel required>
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="phone">Phone Number</label>
+            <div class="col-md-4">
+              <input id="phone" name="phonenumber" type="text" placeholder="(012)-345-6789" class="form-control input-md" required="" ngModel>
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="address">Address</label>
+            <div class="col-md-4">
+              <input id="address" name="address-place" type="text" placeholder="123 USA Way" class="form-control input-md" required="" ngModel>
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="city">City</label>
+            <div class="col-md-4">
+              <input id="city" name="city-place" type="text" placeholder="San Jose" class="form-control input-md" required="" ngModel>
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="state">State</label>
+            <div class="col-md-4">
+              <input id="state" name="state-place" type="text" placeholder="California" class="form-control input-md" required="" ngModel>
+            </div>
+          </div>
+
+          <!-- Select Basic -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="tourselection">Business Type</label>
+            <div class="col-md-4">
+              <select id="serviceSelection" name="serviceselection" value="Salon" class="form-control" ngModel required>
+                <option value="Software">Software</option>
+                <option value="Data">Data</option>
+                <option value="Medical">Medical</option>
+                <option value="Law">Law</option>
+                <option value="Salon">Salon</option>
+                <option value="Barber">Barber</option>
+                <option value="Food">Food</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Panel -->
+      <!-- Start Panel -->
+      <div class="panel panel-primary">
+        <div class="panel-heading">Services</div>
+        <div class="panel-body">
+          <table class="table table-hover">
+            <tbody>
+              <tr *ngFor = "let service of newServices; let i = index;">
+                <td>Service {{i+1}} </td>
+                <!-- <td>Input type text, placeholder = Service Name </td> -->
+                <td> <input type="text" class="form-control" id="usr" placeholder="Service Name"> </td>
+                <!-- <td>Dropdown </td> -->
+                <td>
+                  <select>
+                    <option value="5-minutes">5 minutes</option>
+                    <option value="10-minutes">10 minutes</option>
+                    <option value="15-minutes">15 minutes</option>
+                    <option value="20-minutes">20 minutes</option>
+                    <option value="25-minutes">25 minutes</option>
+                    <option value="30-minutes">30 minutes</option>
+                    <option value="45-minutes">45 minutes</option>
+                    <option value="1-hour">1 hour</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <button type="button" (click)="addNewServiceRow()" class="btn btn-primary">Add New Service</button>
+                <!-- <td>Button for Add New Service</td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <td> <button type="submit"  class="btn btn-success">Save and Continue</button> </td>
+      <!-- End Panel -->
+    </fieldset>
+  </form>
+</div>
+<!-- End Panel -->

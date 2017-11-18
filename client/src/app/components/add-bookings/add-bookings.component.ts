@@ -13,12 +13,15 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
   providers: [BookingService]
 
 })
-
 export class AddBookingComponent {
   constructor(private af: AngularFireDatabase){
 
   }
+  private showAlim: boolean = false;
 
+  fireTest(){
+      this.showAlim = true;
+  }
 
   addBooking(addBookingForm: NgForm){
     var newBooking = {
